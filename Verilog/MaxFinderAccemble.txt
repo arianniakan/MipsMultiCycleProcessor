@@ -1,0 +1,29 @@
+(0)             add R1, R0, R0           // R1 --> mem index
+(4)             addi R20, R0, 80         // R20 --> data size
+(8)             lw R2, 1000(R1)          // R2 --> mem data
+(12)            NOP
+(16)		    NOP
+(20)		    NOP
+(24)            add R3, R0, R2           // R3 --> Max Data
+(28)            add R4, R0, R1           // R4 --> Max Index
+(32)   LOOP:    beq R1, R20, END_LOOP: 17
+(36)            lw R2, 1000(R1)  
+(40)            NOP
+(44)		    NOP
+(48)		    NOP
+(52)            slt R5, R3, R2
+(56)		    NOP
+(60)		    NOP
+(64)		    NOP
+(68)            beq R5, R0, SET_MAX: 1
+(72)            j LEAVE: 21
+(76) SET_MAX:   add R3, R0, R2
+(80)            add R4, R0, R1
+(84) LEAVE:     addi R1, R1, 4
+(88)            NOP
+(92)		    NOP
+(96)		    NOP
+(100)            j LOOP: 8
+(104) END_LOOP:  sw R3, 2000(R0)
+(108)            sw R4, 2004(R0)
+          
